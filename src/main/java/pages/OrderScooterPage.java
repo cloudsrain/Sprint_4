@@ -31,7 +31,7 @@ public class OrderScooterPage {
     //Локатор для кнопки Да в окне Хотите оформить заказ
     private final By yesButton = By.xpath(".//*[text()='Да'] ");
     //Локатор для пуш уведомления об успешном оформлении заказа
-    private final By successPushNotification = By.className("Order_Modal__YZ-d3");
+    private final By successPushNotification = By.xpath(".//*[text()='Заказ оформлен']");
 
     public OrderScooterPage(WebDriver driver) {
         this.driver = driver;

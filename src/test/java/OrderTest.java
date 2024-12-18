@@ -73,7 +73,19 @@ public class OrderTest {
     }
 
     @Test
-    public void test(){
+    public void testUpperOrderButton() {
+        if (orderButton.equals(By.cssSelector(".Button_Button__ra12g"))) {
+            OrderTest();
+        }
+    }
+
+    @Test
+    public void testLowerOrderButton() {
+        if (orderButton.equals(By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM"))) {
+            OrderTest();
+        }
+    }
+    public void OrderTest(){
         scooterMainPage.clickOnCookieButton();
         scooterMainPage.clickOnOrderButton(orderButton);
         orderScooterPage.fillingOrderForm(name, surname, address, metroLocator, phone);
