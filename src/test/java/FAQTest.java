@@ -70,7 +70,7 @@ public class FAQTest {
 
     @Test
 
-    public void FAQTest(){
+    public void runFAQTest(){
         scooterMainPage.clickOnCookieButton();
         scooterMainPage.scrollToArrow(arrowLocator);
         String actualAnswer = scooterMainPage.clickOnArrowCheckAnswer(arrowLocator, answerLocator);
