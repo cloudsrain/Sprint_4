@@ -18,17 +18,17 @@ public class OrderTest {
     private WebDriver driver;
     private ScooterMainPage scooterMainPage;
     private OrderScooterPage orderScooterPage;
-    private final By orderButton;
+    private final String orderButton;
     private final String name;
     private final String surname;
     private final String address;
-    private final By metroLocator;
+    private final String metroLocator;
     private final String phone;
-    private final By dateLocator;
-    private final By rentalPeriodLocator;
+    private final String dateLocator;
+    private final String rentalPeriodLocator;
     private final boolean expected;
 
-    public OrderTest(By orderButton, String name, String surname, String address, By metroLocator, String phone, By dateLocator, By rentalPeriodLocator, boolean expected) {
+    public OrderTest(String orderButton, String name, String surname, String address, String metroLocator, String phone, String dateLocator, String rentalPeriodLocator, boolean expected) {
         this.orderButton = orderButton;
         this.name = name;
         this.surname = surname;
@@ -45,18 +45,18 @@ public class OrderTest {
         return new Object[][]{
                 //Оформеление заказа при нажатии на кнопку Заказать в шапке сайта
                 //Первый заказ
-                {By.cssSelector(".Button_Button__ra12g"),"Андрей", "Кан", "Улица 42", By.xpath(".//*[text()='Красносельская']"), "+77077777777",
-                        By.xpath(".//*[text()='23']"), By.xpath(".//*[text()='сутки']"), true},
+                {".Button_Button__ra12g","Андрей", "Кан", "Улица 42", ".//*[text()='Красносельская']", "+77077777777",
+                        ".//*[text()='23']", ".//*[text()='сутки']", true},
                 //Второй заказ
-                {By.cssSelector(".Button_Button__ra12g"), "Ондрей", "Кин", "Улица 52", By.xpath(".//*[text()='Сокольники']"), "+77088888888",
-                        By.xpath(".//*[text()='24']"), By.xpath(".//*[text()='двое суток']"), true},
+                {".Button_Button__ra12g", "Ондрей", "Кин", "Улица 52", ".//*[text()='Сокольники']", "+77088888888",
+                        ".//*[text()='24']", ".//*[text()='двое суток']", true},
                 //Оформление заказа при нажатии на кнопку Заказать снизу сайта
                 //Первый заказ
-                {By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM"),"Индрей", "Кун", "Улица 62", By.xpath(".//*[text()='Красносельская']"), "+77011111111",
-                        By.xpath(".//*[text()='25']"), By.xpath(".//*[text()='трое суток']"), true},
+                {".Button_Button__ra12g.Button_Middle__1CSJM","Индрей", "Кун", "Улица 62", ".//*[text()='Красносельская']", "+77011111111",
+                        ".//*[text()='25']", ".//*[text()='трое суток']", true},
                 //Второй заказ
-                {By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM"), "Ундрей", "Кон", "Улица 72", By.xpath(".//*[text()='Сокольники']"), "+77099999999",
-                        By.xpath(".//*[text()='26']"), By.xpath(".//*[text()='четверо суток']"), true},
+                {".Button_Button__ra12g.Button_Middle__1CSJM", "Ундрей", "Кон", "Улица 72", ".//*[text()='Сокольники']", "+77099999999",
+                        ".//*[text()='26']", ".//*[text()='четверо суток']", true},
         };
     }
 
@@ -74,23 +74,23 @@ public class OrderTest {
 
     @Test
     public void testUpperOrderButton() {
-        if (orderButton.equals(By.cssSelector(".Button_Button__ra12g"))) {
+        if (orderButton.equals(".Button_Button__ra12g")) {
             runOrderTest();
         }
     }
 
     @Test
     public void testLowerOrderButton() {
-        if (orderButton.equals(By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM"))) {
+        if (orderButton.equals(".Button_Button__ra12g.Button_Middle__1CSJM")) {
             runOrderTest();
         }
     }
     public void runOrderTest(){
         scooterMainPage.clickOnCookieButton();
-        scooterMainPage.clickOnOrderButton(orderButton);
-        orderScooterPage.fillingOrderForm(name, surname, address, metroLocator, phone);
+        scooterMainPage.clickOnOrderButton(By.cssSelector(orderButton));
+        orderScooterPage.fillingOrderForm(name, surname, address, By.xpath(metroLocator), phone);
         orderScooterPage.clickOnNextButton();
-        orderScooterPage.fillingAboutRentalForm(dateLocator, rentalPeriodLocator);
+        orderScooterPage.fillingAboutRentalForm(By.xpath(dateLocator), By.xpath(rentalPeriodLocator));
         orderScooterPage.clickOnOrderButton();
         orderScooterPage.clickOnYesButton();
 
