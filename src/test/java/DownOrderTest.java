@@ -14,7 +14,7 @@ import pages.OrderScooterPage;
 import pages.ScooterMainPage;
 
 @RunWith(Parameterized.class)
-public class OrderTest {
+public class DownOrderTest {
     private WebDriver driver;
     private ScooterMainPage scooterMainPage;
     private OrderScooterPage orderScooterPage;
@@ -28,7 +28,7 @@ public class OrderTest {
     private final String rentalPeriodLocator;
     private final boolean expected;
 
-    public OrderTest(String orderButton, String name, String surname, String address, String metroLocator, String phone, String dateLocator, String rentalPeriodLocator, boolean expected) {
+    public DownOrderTest(String orderButton, String name, String surname, String address, String metroLocator, String phone, String dateLocator, String rentalPeriodLocator, boolean expected) {
         this.orderButton = orderButton;
         this.name = name;
         this.surname = surname;
@@ -43,13 +43,13 @@ public class OrderTest {
     @Parameterized.Parameters
     public static Object[][] getOrderdetails(){
         return new Object[][]{
-                //Оформеление заказа при нажатии на кнопку Заказать в шапке сайта
+                //Оформление заказа при нажатии на кнопку Заказать снизу сайта
                 //Первый заказ
-                {".Button_Button__ra12g","Андрей", "Кан", "Улица 42", ".//*[text()='Красносельская']", "+77077777777",
-                        ".//*[text()='23']", ".//*[text()='сутки']", true},
+                {".Button_Button__ra12g.Button_Middle__1CSJM","Индрей", "Кун", "Улица 62", ".//*[text()='Красносельская']", "+77011111111",
+                        ".//*[text()='25']", ".//*[text()='трое суток']", true},
                 //Второй заказ
-                {".Button_Button__ra12g", "Ондрей", "Кин", "Улица 52", ".//*[text()='Сокольники']", "+77088888888",
-                        ".//*[text()='24']", ".//*[text()='двое суток']", true},
+                {".Button_Button__ra12g.Button_Middle__1CSJM", "Ундрей", "Кон", "Улица 72", ".//*[text()='Сокольники']", "+77099999999",
+                        ".//*[text()='26']", ".//*[text()='четверо суток']", true},
         };
     }
 
@@ -67,7 +67,7 @@ public class OrderTest {
 
 
     @Test
-    public void runHeaderButtonOrderTest(){
+    public void runDownButtonOrderTest(){
         scooterMainPage.clickOnCookieButton();
         scooterMainPage.clickOnOrderButton(By.cssSelector(orderButton));
         orderScooterPage.fillingOrderForm(name, surname, address, By.xpath(metroLocator), phone);
